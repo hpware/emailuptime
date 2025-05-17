@@ -1,7 +1,7 @@
 urlopen
 beautifulsoup4
 psycopg2-binary
-pandas
 dotenv
 chardet
 requests-html
+flask
