@@ -14,5 +14,11 @@ def get_fastmail_status():
         page.wait_for_load_state("networkidle")
         html = page.content()
         browser.close()
-    cache["status"] = html
-    return html
+    soup = BeautifulSoup(html, "html.parser")
+    success = soup.find("h2", class_="main-status__heading")
+    cache["status"] = {
+        "text":success
+    }
+    return {
+        "text":success
+    }
