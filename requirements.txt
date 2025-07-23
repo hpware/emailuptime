@@ -5,3 +5,5 @@ dotenv
 chardet
 requests-html
 flask
+playwright
+cachetools

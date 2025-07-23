@@ -1,9 +1,5 @@
 # Imports
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
 import dotenv
-import os
-import uuid
 from flask import Flask
 from providers.gmail import get_gmail_status
 from providers.fastmail import get_fastmail_status
