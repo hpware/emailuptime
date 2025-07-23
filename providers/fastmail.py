@@ -3,7 +3,7 @@ from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 from cachetools import TTLCache
 
-cache = TTLCache(maxsize=10, ttl=300)
+cache = TTLCache(maxsize=10, ttl=600)
 def get_fastmail_status():
     if "status" in cache:
         return cache["status"]
