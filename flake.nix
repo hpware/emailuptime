@@ -8,20 +8,22 @@
 
   outputs = { self, nixpkgs, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = import nixpkgs { inherit system; };
+      let
+        pkgs = import nixpkgs { inherit system; };
+        pythonEnv = pkgs.python3.withPackages (ps: with ps; [
+          flask
+          # Add other dependencies here, e.g. psycopg2, requests, etc.
+        ]);
       in with pkgs; rec {
         # Development environment
         devShell = mkShell {
           name = "flask-example";
-          nativeBuildInputs = [ python3 poetry ];
+          nativeBuildInputs = [ pythonEnv ];
         };
 
-        # Runtime package
-        packages.app = poetry2nix.mkPoetryApplication {
-          projectDir = ./.;
-        };
+        # Runtime package (if you want to build an app derivation)
+        packages.app = pythonEnv;
 
-        # The default package when a specific package name isn't specified.
         defaultPackage = packages.app;
       }
     );
