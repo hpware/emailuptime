@@ -1,2 +1,2 @@
 [start]
-cmd = 'python -m pip install gunicorn && python -m gunicorn -w 1 -b 0.0.0.0:8000 app:app'
+cmd = 'python -m pip install gunicorn playwright && playwright install && python -m gunicorn -w 1 -b 0.0.0.0:8000 app:app'
