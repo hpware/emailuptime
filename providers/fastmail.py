@@ -1,4 +1,3 @@
-from urllib.request import urlopen, Request
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
 from cachetools import TTLCache
@@ -15,7 +14,7 @@ def get_fastmail_status():
         html = page.content()
         browser.close()
     soup = BeautifulSoup(html, "html.parser")
-    success = soup.find("h2", class_="main-status__heading")
+    success = soup.find("h2", class_="main-status__heading").text.strip()
     cache["status"] = {
         "text":success
     }
